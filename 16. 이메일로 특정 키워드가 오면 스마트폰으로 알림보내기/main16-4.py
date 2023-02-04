@@ -5,7 +5,9 @@ import requests
 import json
 import time
 
-slack_webhook_url = "https://hooks.slack.com/services/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"
+slack_webhook_url = "https://hooks.slack.com/services/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"
+
+
 
 def sendSlackWebhook(strText):
     headers = {
@@ -23,7 +25,7 @@ def sendSlackWebhook(strText):
     else:
         return "error"
 
-def find_encoding_info(txt):    
+def find_encoding_info(txt):    #보내는 데이터를 저장할 리스트를 생성했다
     info = email.header.decode_header(txt)
     subject, encode = info[0]
     return subject, encode
@@ -52,16 +54,19 @@ while True:
             subject, encode = find_encoding_info(email_message['Subject'])
             subject_str = str(subject)
             
-            if subject_str.find("비밀번호") >= 0:
+            if subject_str.find("WEBSTORE") >= 0: #메일에서 "비밀번호를" 찾았으면 ok
                 slack_send_message =  email_from + '\n' + email_date + '\n' + subject_str
-                if slack_send_message not in send_list:
+                if slack_send_message not in send_list: #send_list에 없다면 메일을 보낸다. (여러번 메일을 보내는 현상을 피하기위해서 새로 찾은것만 넣는 코드)
                     sendSlackWebhook(slack_send_message)
                     print(slack_send_message)
                     send_list.append(slack_send_message)
+					# slack에서 메세지 보내고 send_list에 보낸 메세지를 원소로 추가
 
         time.sleep(30)
+		#30초 지연
     except KeyboardInterrupt:
         break
+	#키보드에 조작이 발생하면 반복문 반복문
 
 imap.close()
 imap.logout()

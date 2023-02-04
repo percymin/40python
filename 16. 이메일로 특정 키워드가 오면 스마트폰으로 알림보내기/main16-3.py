@@ -4,7 +4,7 @@ from email import policy
 import requests
 import json
 
-slack_webhook_url = "https://hooks.slack.com/services/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"
+slack_webhook_url = "https://hooks.slack.com/services/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"
 
 def sendSlackWebhook(strText):
     headers = {
@@ -45,11 +45,13 @@ for mail in reversed(last_email):
     email_from = str(email_message['From'])
     email_date = str(email_message['Date'])
     subject, encode = find_encoding_info(email_message['Subject'])
+	#받은 메일의 보낸사람 받은시간 제목을 문자열 형태로 바꿔준다.
     subject_str = str(subject)
-    if subject_str.find("비밀번호") >= 0:
+    if subject_str.find("WEBSTORE") >= 0: # 메일의 "비밀번호" 라는 키워드가 있으면 찾은 위치를 반환한다. 못찾으면 -1을 반환한다.
         slack_send_message =  email_from + '\n' + email_date + '\n' + subject_str
         sendSlackWebhook(slack_send_message)
         print(slack_send_message)
+		#"비밀번호" 키워드를 찾았으면 메일을 보내고 메일을 출력한다
 
 imap.close()
 imap.logout()

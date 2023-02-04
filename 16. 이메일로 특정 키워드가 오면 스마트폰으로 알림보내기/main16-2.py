@@ -34,7 +34,7 @@ for mail in reversed(last_email):
     message = ''
     if email_message.is_multipart():
         for part in email_message.get_payload():
-            if part.get_content_type() == 'text/plain':
+            if part.get_content_type() == 'text/plain': #본문의 메세지 타입이 text/plain일 경우에만 본문을 저장한다. 사진, html등은 저장 X
                 bytes = part.get_payload(decode=True)
                 encode = part.get_content_charset()
                 message = message + str(bytes, encode)
