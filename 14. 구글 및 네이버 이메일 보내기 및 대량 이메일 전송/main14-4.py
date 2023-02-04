@@ -17,30 +17,45 @@ msg['From'] = send_email
 msg['To'] = recv_email 
 
 html_body = """
+<html>
+<head>
+<style>
+table {
+	border-style: solid;
+}
+td {
+	border-style: solid;
+}
+</style>
+</head>
+
+<body>
 <p>안녕하세요 html 형식으로 보내는 이메일 테스트 입니다.</p>
 <p><span style="color: #0000ff;">글자의 색상을 지정하거나</span></p>
 <h1>크기를 조정할수 있습니다.</h1>
 <p>표도 만들수 있습니다.</p>
-<table style="height: 83px;" width="241">
+<table style="height: 83px; border-style: solid;" width="241">
 <tbody>
 <tr>
-<td style="width: 73px;">1</td>
-<td style="width: 73px;">2</td>
-<td style="width: 73px;">3</td>
+<td style="width: 73px; border-style: solid;">1</td>
+<td style="width: 73px; border-style: solid;">2</td>
+<td style="width: 73px; border-style: solid;">3</td>
 </tr>
 <tr>
-<td style="width: 73px;">표를</td>
-<td style="width: 73px;">만들수&nbsp;</td>
-<td style="width: 73px;">있습니다.</td>
+<td style="width: 73px; border-style: solid;">표를</td>
+<td style="width: 73px; border-style: solid;">만들수&nbsp;</td>
+<td style="width: 73px; border-style: solid;">있습니다.</td>
 </tr>
 <tr>
-<td style="width: 73px;">4</td>
-<td style="width: 73px;">5</td>
-<td style="width: 73px;">6</td>
+<td style="width: 73px; border-style: solid;">4</td>
+<td style="width: 73px; border-style: solid;">5</td>
+<td style="width: 73px; border-style: solid;">6</td>
 </tr>
 </tbody>
 </table>
 <p>&nbsp;</p>
+</body>
+</html>
 """
 
 msg.attach( MIMEText(html_body,'html') ) 
