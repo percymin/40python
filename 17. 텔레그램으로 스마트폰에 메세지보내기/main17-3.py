@@ -1,6 +1,6 @@
 import telegram
 from telegram.ext import Updater
-from telegram.ext import MessageHandler, filters
+from telegram.ext import MessageHandler, Filters
 
 token = "5863921919:AAEu0y9RotBmdf-klgmkZJ3OJk6OnGgit7o" 
 id = "5920401541"
@@ -19,5 +19,7 @@ def handler(update, context):
     elif user_text == "뭐해": 
         bot.send_message(chat_id=id, text="그냥 있어") 
 
-echo_handler = MessageHandler(filters.text, handler)
+echo_handler = MessageHandler(Filters.text, handler)
 dispatcher.add_handler(echo_handler)
+
+
